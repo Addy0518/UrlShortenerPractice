@@ -1,3 +1,5 @@
+using UrlShortenerPractice.Infrastructures.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 加入剛剛設定的 SerilogConfig , 在系統初始化時就先執行 Serilog , 確保系統沒啟動也能夠記錄起來
@@ -14,7 +16,7 @@ try
     // AddSerilog 是把 Serilog 整合進 ASP.NET Core 的 ILogger 系統，這樣注入 ILogger<T> 的地方實際上會使用 Serilog 來輸出 Log 紀錄
     builder.Services.AddSerilog();
 
-    builder.Services.AddDbContext<BookingPracticeContext>(options =>
+    builder.Services.AddDbContext<UrlShortenerPracticeContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnecting"))
     );
 

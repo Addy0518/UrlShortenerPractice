@@ -1,4 +1,7 @@
-﻿namespace UrlShortenerPractice.API.Infrastructures.DiConfig;
+﻿using UrlShortenerPractice.Common.Validators;
+using UrlShortenerPractice.Infrastructures.Options;
+
+namespace UrlShortenerPractice.API.Infrastructures.DiConfig;
 
 public static class DiConfig
 {
@@ -8,6 +11,8 @@ public static class DiConfig
         services.AddSingleton<TokenHelper>();
         services.AddSingleton<PasswordSecureHelper>();
         services.AddSingleton<DBConnecting>();
+        services.Configure<ShortLinkOptions>(configuration.GetSection("ShortLink"));
+        services.AddValidatorsFromAssemblyContaining<CreateShortLinkRequestValidator>();
 
         //將Service結尾且生命週期相同的物件, 統一註冊
         services.Scan(scan =>

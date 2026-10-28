@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "BookingPracticeContext",
+   "ContextClassName": "UrlShortenerPracticeContext",
    "ContextNamespace": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
@@ -11,7 +11,7 @@
    "OutputPath": "Models",
    "PluralRules": null,
    "PreserveCasingWithRegex": true,
-   "ProjectRootNamespace": "BookingPractice",
+   "ProjectRootNamespace": "UrlShortenerPractice",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 2,
    "SelectedToBeGenerated": 0,
@@ -19,15 +19,7 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Booking]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[DiningTable]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Guest]",
+         "Name": "[dbo].[ShortLinks]",
          "ObjectType": 0
       }
    ],
