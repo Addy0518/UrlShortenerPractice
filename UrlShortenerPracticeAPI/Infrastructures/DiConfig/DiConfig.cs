@@ -8,6 +8,10 @@ public static class DiConfig
     //管理註冊
     public static void AddDiConfig(this IServiceCollection services, IConfiguration configuration)
     {
+        // AddSingleton : 整個程式從啟動到關閉只建立一次連線 , 適合建立成本高或需要共用的物件 ( 讀設定 , 連線工具等 )
+        // Configure : 讀 appsetting 裡的設定並放進 ShortLinkOptions , 來給 Service 注入
+        // AddValidatorsFromAssemblyContaining : 掃描物件裡所有繼承 AbstractValidator<T> 的類別並註冊 , AbstractValidator<T> 是指這個類別是專門驗證 <T> 的一組規則
+
         services.AddSingleton<TokenHelper>();
         services.AddSingleton<PasswordSecureHelper>();
         services.AddSingleton<DBConnecting>();
