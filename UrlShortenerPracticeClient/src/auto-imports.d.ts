@@ -9,8 +9,8 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue').EffectScope
-  const GetGameRecordInfo: typeof import('./api/userService.js').GetGameRecordInfo
-  const GetRecordDetailsInfo: typeof import('./api/userService.js').GetRecordDetailsInfo
+  const GetGameRecordInfo: typeof import('./api/shortLinkService.js').GetGameRecordInfo
+  const GetRecordDetailsInfo: typeof import('./api/shortLinkService.js').GetRecordDetailsInfo
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
   const accountInstance: typeof import('./api/accountInstance.js').default
   const actions: typeof import('./stores/gameResult.js').actions
@@ -20,6 +20,8 @@ declare global {
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
   const createRoomAPI: typeof import('./api/roomService.js').createRoomAPI
+  const createShortLink: typeof import('./api/shortLinkService.js').createShortLink
+  const createShortLinkAPI: typeof import('./api/shortLinkService.js').createShortLinkAPI
   const customRef: typeof import('vue').customRef
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
@@ -43,13 +45,13 @@ declare global {
   const getEnumDescription: typeof import('./common/enum.js').getEnumDescription
   const getError400Message: typeof import('./common/method.js').getError400Message
   const getFirstDayOfMonth: typeof import('./common/formats.js').getFirstDayOfMonth
-  const getGameRecordInfo: typeof import('./api/userService.js').getGameRecordInfo
-  const getGameRecordInfoAPI: typeof import('./api/userService.js').getGameRecordInfoAPI
-  const getRecordDetailsInfo: typeof import('./api/userService.js').getRecordDetailsInfo
-  const getRecordDetailsInfoAPI: typeof import('./api/userService.js').getRecordDetailsInfoAPI
+  const getGameRecordInfo: typeof import('./api/shortLinkService.js').getGameRecordInfo
+  const getGameRecordInfoAPI: typeof import('./api/shortLinkService.js').getGameRecordInfoAPI
+  const getRecordDetailsInfo: typeof import('./api/shortLinkService.js').getRecordDetailsInfo
+  const getRecordDetailsInfoAPI: typeof import('./api/shortLinkService.js').getRecordDetailsInfoAPI
   const getRoomInfoAPI: typeof import('./api/roomService.js').getRoomInfoAPI
   const getToast: typeof import('./common/toast.js').getToast
-  const guestLoginAPI: typeof import('./api/userService.js').guestLoginAPI
+  const guestLoginAPI: typeof import('./api/shortLinkService.js').guestLoginAPI
   const h: typeof import('vue').h
   const httpCodeStatusEnum: typeof import('./common/enum.js').httpCodeStatusEnum
   const inject: typeof import('vue').inject
@@ -61,7 +63,7 @@ declare global {
   const isShallow: typeof import('vue').isShallow
   const joinRoomAPI: typeof import('./api/roomService.js').joinRoomAPI
   const leaveRoomAPI: typeof import('./api/roomService.js').leaveRoomAPI
-  const loginAPI: typeof import('./api/userService.js').loginAPI
+  const loginAPI: typeof import('./api/shortLinkService.js').loginAPI
   const logisticsEnum: typeof import('./common/enum.js').logisticsEnum
   const mapActions: typeof import('pinia').mapActions
   const mapGetters: typeof import('pinia').mapGetters
@@ -92,8 +94,10 @@ declare global {
   const provide: typeof import('vue').provide
   const reactive: typeof import('vue').reactive
   const readonly: typeof import('vue').readonly
+  const redirectToOriginal: typeof import('./api/shortLinkService.js').redirectToOriginal
+  const redirectToOriginalAPI: typeof import('./api/shortLinkService.js').redirectToOriginalAPI
   const ref: typeof import('vue').ref
-  const registerAPI: typeof import('./api/userService.js').registerAPI
+  const registerAPI: typeof import('./api/shortLinkService.js').registerAPI
   const registerReconnectHandler: typeof import('./common/signalrConnection.js').registerReconnectHandler
   const required: typeof import('./validator/validators.js').required
   const resolveComponent: typeof import('vue').resolveComponent
@@ -157,13 +161,11 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly accountInstance: UnwrapRef<typeof import('./api/accountInstance.js')['default']>
-    readonly actions: UnwrapRef<typeof import('./stores/gameResult.js')['actions']>
     readonly codeStatusEnum: UnwrapRef<typeof import('./common/enum.js')['codeStatusEnum']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
-    readonly couponTypeEnum: UnwrapRef<typeof import('./common/enum.js')['couponTypeEnum']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
-    readonly createRoomAPI: UnwrapRef<typeof import('./api/roomService.js')['createRoomAPI']>
+    readonly createShortLinkAPI: UnwrapRef<typeof import('./api/shortLinkService.js')['createShortLinkAPI']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
@@ -173,38 +175,24 @@ declare module 'vue' {
     readonly formatDateOnly: UnwrapRef<typeof import('./common/formats.js')['formatDateOnly']>
     readonly formatDateString: UnwrapRef<typeof import('./common/formats.js')['formatDateString']>
     readonly formatDateTimeString: UnwrapRef<typeof import('./common/formats.js')['formatDateTimeString']>
-    readonly formatLogisticsSubType: UnwrapRef<typeof import('./common/formats.js')['formatLogisticsSubType']>
-    readonly formatPaidType: UnwrapRef<typeof import('./common/formats.js')['formatPaidType']>
     readonly formatTWDate: UnwrapRef<typeof import('./common/formats.js')['formatTWDate']>
     readonly formatUTC8Date: UnwrapRef<typeof import('./common/formats.js')['formatUTC8Date']>
-    readonly genderEnum: UnwrapRef<typeof import('./common/enum.js')['genderEnum']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
-    readonly getAvatarEmoji: UnwrapRef<typeof import('./common/avatar.js')['getAvatarEmoji']>
-    readonly getConnection: UnwrapRef<typeof import('./common/signalrConnection.js')['getConnection']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
     readonly getEnumDescription: UnwrapRef<typeof import('./common/enum.js')['getEnumDescription']>
     readonly getError400Message: UnwrapRef<typeof import('./common/method.js')['getError400Message']>
     readonly getFirstDayOfMonth: UnwrapRef<typeof import('./common/formats.js')['getFirstDayOfMonth']>
-    readonly getGameRecordInfoAPI: UnwrapRef<typeof import('./api/userService.js')['getGameRecordInfoAPI']>
-    readonly getRecordDetailsInfoAPI: UnwrapRef<typeof import('./api/userService.js')['getRecordDetailsInfoAPI']>
-    readonly getRoomInfoAPI: UnwrapRef<typeof import('./api/roomService.js')['getRoomInfoAPI']>
     readonly getToast: UnwrapRef<typeof import('./common/toast.js')['getToast']>
-    readonly guestLoginAPI: UnwrapRef<typeof import('./api/userService.js')['guestLoginAPI']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly httpCodeStatusEnum: UnwrapRef<typeof import('./common/enum.js')['httpCodeStatusEnum']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
-    readonly isDeleteEnum: UnwrapRef<typeof import('./common/enum.js')['isDeleteEnum']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
-    readonly joinRoomAPI: UnwrapRef<typeof import('./api/roomService.js')['joinRoomAPI']>
-    readonly leaveRoomAPI: UnwrapRef<typeof import('./api/roomService.js')['leaveRoomAPI']>
-    readonly loginAPI: UnwrapRef<typeof import('./api/userService.js')['loginAPI']>
-    readonly logisticsEnum: UnwrapRef<typeof import('./common/enum.js')['logisticsEnum']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
     readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
@@ -214,7 +202,6 @@ declare module 'vue' {
     readonly maxLength: UnwrapRef<typeof import('./validator/validators.js')['maxLength']>
     readonly minLength: UnwrapRef<typeof import('./validator/validators.js')['minLength']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly notificationTypeEnum: UnwrapRef<typeof import('./common/enum.js')['notificationTypeEnum']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -234,13 +221,10 @@ declare module 'vue' {
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
+    readonly redirectToOriginalAPI: UnwrapRef<typeof import('./api/shortLinkService.js')['redirectToOriginalAPI']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
-    readonly registerAPI: UnwrapRef<typeof import('./api/userService.js')['registerAPI']>
-    readonly registerReconnectHandler: UnwrapRef<typeof import('./common/signalrConnection.js')['registerReconnectHandler']>
     readonly required: UnwrapRef<typeof import('./validator/validators.js')['required']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
-    readonly reverseLookupZipCode: UnwrapRef<typeof import('./common/formats.js')['reverseLookupZipCode']>
-    readonly reviewStatusEnum: UnwrapRef<typeof import('./common/enum.js')['reviewStatusEnum']>
     readonly sameAsPassword: UnwrapRef<typeof import('./validator/validators.js')['sameAsPassword']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
@@ -248,9 +232,6 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly shippingEnum: UnwrapRef<typeof import('./common/enum.js')['shippingEnum']>
-    readonly startConnection: UnwrapRef<typeof import('./common/signalrConnection.js')['startConnection']>
-    readonly stopConnection: UnwrapRef<typeof import('./common/signalrConnection.js')['stopConnection']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
@@ -263,7 +244,6 @@ declare module 'vue' {
     readonly useChatUserStore: UnwrapRef<typeof import('./stores/chatUser.js')['useChatUserStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
-    readonly useGameResultStore: UnwrapRef<typeof import('./stores/gameResult.js')['useGameResultStore']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
